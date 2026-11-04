@@ -1,0 +1,151 @@
+{
+  "event_counts": [
+    {
+      "split": "train",
+      "operating_regime": "A",
+      "events": 8,
+      "fault_types": 4
+    },
+    {
+      "split": "train",
+      "operating_regime": "B",
+      "events": 11,
+      "fault_types": 4
+    },
+    {
+      "split": "validation",
+      "operating_regime": "A",
+      "events": 5,
+      "fault_types": 4
+    },
+    {
+      "split": "validation",
+      "operating_regime": "B",
+      "events": 3,
+      "fault_types": 3
+    },
+    {
+      "split": "test",
+      "operating_regime": "A",
+      "events": 2,
+      "fault_types": 2
+    },
+    {
+      "split": "test",
+      "operating_regime": "B",
+      "events": 6,
+      "fault_types": 4
+    }
+  ],
+  "common_rule": {
+    "threshold": 0.25,
+    "persistence": 3
+  },
+  "global_model_regime_rules": {
+    "A": {
+      "threshold": 0.2,
+      "persistence": 3
+    },
+    "B": {
+      "threshold": 0.25,
+      "persistence": 3
+    }
+  },
+  "separate_model_rules": {
+    "A": {
+      "threshold": 0.2,
+      "persistence": 5
+    },
+    "B": {
+      "threshold": 0.15,
+      "persistence": 10
+    }
+  },
+  "test_comparison": [
+    {
+      "event_count": 2,
+      "detected": 2,
+      "detection_rate": 1.0,
+      "median_delay_min": 106.0,
+      "false_alerts": 0,
+      "false_alerts_per_24h": 0.0,
+      "approach": "통합 모델+공통 규칙",
+      "regime": "A",
+      "threshold": 0.25,
+      "persistence": 3,
+      "PR_AUC": 0.8355113456556531,
+      "ROC_AUC": 0.8769854359567901
+    },
+    {
+      "event_count": 6,
+      "detected": 6,
+      "detection_rate": 1.0,
+      "median_delay_min": 68.5,
+      "false_alerts": 0,
+      "false_alerts_per_24h": 0.0,
+      "approach": "통합 모델+공통 규칙",
+      "regime": "B",
+      "threshold": 0.25,
+      "persistence": 3,
+      "PR_AUC": 0.8712268548219398,
+      "ROC_AUC": 0.8984481975124102
+    },
+    {
+      "event_count": 2,
+      "detected": 2,
+      "detection_rate": 1.0,
+      "median_delay_min": 103.5,
+      "false_alerts": 1,
+      "false_alerts_per_24h": 0.5,
+      "approach": "통합 모델+레짐별 규칙",
+      "regime": "A",
+      "threshold": 0.2,
+      "persistence": 3,
+      "PR_AUC": 0.8355113456556531,
+      "ROC_AUC": 0.8769854359567901
+    },
+    {
+      "event_count": 6,
+      "detected": 6,
+      "detection_rate": 1.0,
+      "median_delay_min": 68.5,
+      "false_alerts": 0,
+      "false_alerts_per_24h": 0.0,
+      "approach": "통합 모델+레짐별 규칙",
+      "regime": "B",
+      "threshold": 0.25,
+      "persistence": 3,
+      "PR_AUC": 0.8712268548219398,
+      "ROC_AUC": 0.8984481975124102
+    },
+    {
+      "event_count": 2,
+      "detected": 2,
+      "detection_rate": 1.0,
+      "median_delay_min": 104.5,
+      "false_alerts": 0,
+      "false_alerts_per_24h": 0.0,
+      "approach": "레짐별 개별 모델",
+      "regime": "A",
+      "threshold": 0.2,
+      "persistence": 5,
+      "PR_AUC": 0.8351357628872419,
+      "ROC_AUC": 0.879486400462963
+    },
+    {
+      "event_count": 6,
+      "detected": 6,
+      "detection_rate": 1.0,
+      "median_delay_min": 58.5,
+      "false_alerts": 7,
+      "false_alerts_per_24h": 1.1666666666666667,
+      "approach": "레짐별 개별 모델",
+      "regime": "B",
+      "threshold": 0.15,
+      "persistence": 10,
+      "PR_AUC": 0.873066924293808,
+      "ROC_AUC": 0.9013015787336913
+    }
+  ],
+  "recommendation": "Keep the global condition-aware model with the common rule until more regime-specific events are available."
+}

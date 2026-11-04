@@ -1,0 +1,54 @@
+{
+  "model_file": "models/binary_fault_detector_hgb_optimized.joblib",
+  "model_unchanged": true,
+  "stages": {
+    "이상 징후": {
+      "probability_threshold": 0.225,
+      "persistence_minutes": 1,
+      "normal_alert_budget_per_24h": 5.0,
+      "observed_full_replay_alerts_per_24h": 4.611770857370758,
+      "independent_test_median_delay_min": 26.5
+    },
+    "조기 경고": {
+      "probability_threshold": 0.25,
+      "persistence_minutes": 2,
+      "normal_alert_budget_per_24h": 2.0,
+      "observed_full_replay_alerts_per_24h": 1.9361370363305805,
+      "independent_test_median_delay_min": 29.5
+    },
+    "확정 경보": {
+      "probability_threshold": 0.45,
+      "persistence_minutes": 2,
+      "normal_alert_budget_per_24h": 1.0,
+      "observed_full_replay_alerts_per_24h": 0.9565438929490369,
+      "independent_test_median_delay_min": 32.0
+    }
+  },
+  "specialized_detectors": {
+    "status": "diagnostic_only_not_alarm_triggers",
+    "rules": {
+      "1": {
+        "threshold": 1.0,
+        "persistence": 2
+      },
+      "2": {
+        "threshold": 0.75,
+        "persistence": 5
+      },
+      "3": {
+        "threshold": 0.75,
+        "persistence": 2
+      },
+      "4": {
+        "threshold": 1.25,
+        "persistence": 1
+      }
+    },
+    "reason": "Combined rules increased false alerts and produced ambiguous fault hints."
+  },
+  "limitations": [
+    "Threshold budgets were calibrated on the available 90-day normal data.",
+    "Only eight independent test events are available.",
+    "A separate hysteresis and alert-clear policy is still required."
+  ]
+}

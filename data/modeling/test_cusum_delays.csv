@@ -1,0 +1,17 @@
+method,event_id,fault_type,regime,delay_min
+HGB threshold,23,3,B,31
+CUSUM,23,3,B,34
+HGB threshold,28,2,B,36
+CUSUM,28,2,B,41
+HGB threshold,29,4,B,17
+CUSUM,29,4,B,29
+HGB threshold,31,1,B,33
+CUSUM,31,1,B,34
+HGB threshold,32,4,A,19
+CUSUM,32,4,A,21
+HGB threshold,33,1,A,90
+CUSUM,33,1,A,93
+HGB threshold,34,3,B,45
+CUSUM,34,3,B,47
+HGB threshold,35,2,B,27
+CUSUM,35,2,B,29

@@ -1,0 +1,138 @@
+{
+  "target": "fault_type",
+  "classes": {
+    "1": "Cooling System Degradation",
+    "2": "Feed Flow Blockage",
+    "3": "Sensor Drift",
+    "4": "Mechanical Wear"
+  },
+  "binary_model": "models/binary_fault_detector_hgb_optimized.joblib",
+  "binary_alert_threshold": 0.35,
+  "binary_alert_persistence_minutes": 2,
+  "model": "Extra Trees",
+  "input_feature_columns": [
+    "reactor_temp__z_6h",
+    "reactor_temp__mean15_vs_6h",
+    "reactor_pressure__z_6h",
+    "reactor_pressure__mean15_vs_6h",
+    "feed_flow_rate__z_6h",
+    "feed_flow_rate__mean15_vs_6h",
+    "coolant_flow_rate__z_6h",
+    "coolant_flow_rate__mean15_vs_6h",
+    "agitator_speed_rpm__z_6h",
+    "agitator_speed_rpm__mean15_vs_6h",
+    "reaction_rate__z_6h",
+    "reaction_rate__mean15_vs_6h",
+    "conversion_rate__z_6h",
+    "conversion_rate__mean15_vs_6h",
+    "selectivity__z_6h",
+    "selectivity__mean15_vs_6h",
+    "yield_pct__z_6h",
+    "yield_pct__mean15_vs_6h",
+    "vibration_rms__z_6h",
+    "vibration_rms__mean15_vs_6h",
+    "motor_current__z_6h",
+    "motor_current__mean15_vs_6h",
+    "power_consumption_kw__z_6h",
+    "power_consumption_kw__mean15_vs_6h",
+    "cooling_signature",
+    "temp_process_mismatch",
+    "flow_conversion_joint",
+    "mechanical_joint",
+    "temp_coolant_product"
+  ],
+  "relationship_features": {
+    "cooling_signature": "reactor_temp__z_6h - coolant_flow_rate__z_6h",
+    "temp_process_mismatch": "reactor_temp__z_6h - mean(reaction_rate, conversion_rate, reactor_pressure z)",
+    "flow_conversion_joint": "-(feed_flow_rate__z_6h + conversion_rate__z_6h)",
+    "mechanical_joint": "vibration_rms__z_6h + motor_current__z_6h",
+    "temp_coolant_product": "reactor_temp__z_6h * -coolant_flow_rate__z_6h"
+  },
+  "training_window_minutes_after_alert": [
+    0,
+    60
+  ],
+  "output_frequency_minutes": 1,
+  "validation_selection_metric": "mean macro F1 at 0, 5, 10, 15 minutes",
+  "confirmation_minutes_after_alert": 10,
+  "metrics": [
+    {
+      "split": "validation",
+      "minutes_after_alert": 0,
+      "accuracy": 0.75,
+      "macro_f1": 0.6666666666666666
+    },
+    {
+      "split": "validation",
+      "minutes_after_alert": 5,
+      "accuracy": 0.75,
+      "macro_f1": 0.6666666666666666
+    },
+    {
+      "split": "validation",
+      "minutes_after_alert": 10,
+      "accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    {
+      "split": "validation",
+      "minutes_after_alert": 15,
+      "accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    {
+      "split": "validation",
+      "minutes_after_alert": 30,
+      "accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    {
+      "split": "validation",
+      "minutes_after_alert": 60,
+      "accuracy": 0.75,
+      "macro_f1": 0.65
+    },
+    {
+      "split": "test",
+      "minutes_after_alert": 0,
+      "accuracy": 0.875,
+      "macro_f1": 0.8666666666666666
+    },
+    {
+      "split": "test",
+      "minutes_after_alert": 5,
+      "accuracy": 0.875,
+      "macro_f1": 0.8666666666666667
+    },
+    {
+      "split": "test",
+      "minutes_after_alert": 10,
+      "accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    {
+      "split": "test",
+      "minutes_after_alert": 15,
+      "accuracy": 0.875,
+      "macro_f1": 0.8666666666666667
+    },
+    {
+      "split": "test",
+      "minutes_after_alert": 30,
+      "accuracy": 0.875,
+      "macro_f1": 0.8666666666666667
+    },
+    {
+      "split": "test",
+      "minutes_after_alert": 60,
+      "accuracy": 0.875,
+      "macro_f1": 0.8666666666666667
+    }
+  ],
+  "limitations": [
+    "Only 19 train, 8 validation, and 8 test events.",
+    "Perfect 10-minute test result means 8/8 only.",
+    "Probabilities are not calibrated and confidence is often low.",
+    "Predicted type may change minute to minute; temporal stabilization is required before automated action."
+  ]
+}

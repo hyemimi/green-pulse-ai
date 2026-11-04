@@ -1,0 +1,32 @@
+{
+  "objective": "detect every independent test event within 10 minutes",
+  "independent_test_events": 8,
+  "current_model": "Histogram Gradient Boosting",
+  "operational_false_alert_target_per_24h": 1.0,
+  "findings": {
+    "threshold_0_01_one_minute": {
+      "detected_within_10m": 5,
+      "events": 8,
+      "false_alerts_per_24h": 41.04
+    },
+    "threshold_0_0015_one_minute": {
+      "detected_within_10m": 8,
+      "events": 8,
+      "false_alerts_per_24h": 98.3
+    },
+    "threshold_0_0015_two_minutes": {
+      "detected_within_10m": 7,
+      "events": 8,
+      "false_alerts_per_24h": 53.9
+    }
+  },
+  "decision": "reject 10-minute confirmed alarm with current signals; redesign target or add earlier signals",
+  "relative_score_shadow_candidate": {
+    "baseline_minutes": 1440,
+    "normal_quantile": 0.999,
+    "k_of_n": "2_of_3",
+    "false_alerts_per_24h": 0.29003640127571195,
+    "test_median_delay_min": 35.0
+  },
+  "test_tuning_prohibited": true
+}

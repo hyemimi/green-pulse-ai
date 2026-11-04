@@ -1,1 +1,16 @@
+# Local source data
 data/chemical_process_timeseries.csv
+
+# Reproducible large intermediate artifacts
+data/processed/
+data/modeling/*.csv.gz
+data/modeling/event_split_manifest.csv
+
+# Large legacy baseline model; final models remain tracked
+models/binary_fault_detector_extratrees.joblib
+
+# Local notebook and Python caches
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store

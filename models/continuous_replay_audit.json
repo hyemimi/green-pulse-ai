@@ -1,0 +1,26 @@
+{
+  "engineering_replay_not_independent": true,
+  "current_model": {
+    "events": 35,
+    "detected": 35,
+    "detection_rate": 1.0,
+    "median_delay_min": 1.0,
+    "false_alerts": 681,
+    "false_alerts_per_24h": 1.3080449620447672
+  },
+  "fast_candidate": {
+    "events": 35,
+    "detected": 35,
+    "detection_rate": 1.0,
+    "median_delay_min": 1.0,
+    "false_alerts": 804,
+    "false_alerts_per_24h": 1.5442997789779631
+  },
+  "fast_rule": {
+    "threshold": 0.275,
+    "persistence": 2
+  },
+  "current_model_meets_full_replay_target": false,
+  "adopt_fast_candidate": false,
+  "decision": "No candidate is deployment-ready; keep the current model only as a development baseline"
+}
